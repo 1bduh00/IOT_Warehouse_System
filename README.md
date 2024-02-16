@@ -38,7 +38,7 @@ Azure Functions -> Database: Functions store processed data in the database.
 Azure Functions -> Web App: Functions send relevant data or notifications to the web app.
 
 
-====> Example: Predictive Maintenance Scenario
+====>Example: Predictive Maintenance Scenario
 
 Devices: Sensors on industrial equipment collect data like temperature, vibration, and pressure.
 Azure IoT Hub: Receives device data and routes it to Functions for analysis.
