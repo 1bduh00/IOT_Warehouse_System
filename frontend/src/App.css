@@ -1,0 +1,47 @@
+body  {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+a {
+    text-decoration: none;
+
+}
+
+
+
+/* Structure */
+.Dashboard_container {
+    display: grid;
+    grid-template-columns: auto 2fr;
+
+    
+}
+
+
+.Main-Sensor {
+    display: grid;
+    grid-template-columns: repeat(4,auto);
+    gap: 20px;
+    justify-content: space-between;
+}
+
+.Dashboard_container .Navbar {
+    background-color: red;
+    
+}
+.Dashboard_container .Main_container .Header {
+    background-color: green;
+    
+}
+
+.Dashboard_container .Main_container .Sensor_data_actions_container,
+.Dashboard_container .Main_container .Second_Container,
+.Dashboard_container .Main_container .Theird_Container 
+    {
+    display: flex;
+    justify-content: space-between;
+    background-color: blue;
+}
