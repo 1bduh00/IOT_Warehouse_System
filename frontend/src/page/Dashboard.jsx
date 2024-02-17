@@ -23,7 +23,6 @@ function Dashboard() {
             <Header />
             <div className="Sensor_data_actions_container">
                 <SensorData />
-                
             </div>
             <div className="Second_Container">
                 <ProductsData/>

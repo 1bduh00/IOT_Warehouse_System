@@ -45,3 +45,144 @@ a {
     justify-content: space-between;
     background-color: blue;
 }
+
+
+.login-container{
+    display: flex;
+    min-width: max-content;
+    border: 1px solid black;
+    height: 100vh;
+}
+.login-container_form {
+    height: 100%;
+    /* border: 1px solid red; */
+    width: 45%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.39); */
+}
+
+.login-container_image{
+    position: relative;
+    height: 100%;;
+    width: 55%;
+    /* border: 1px solid green; */
+}
+
+.login-container_image img{
+    position: absolute;
+    object-fit: contain;
+    height: 100%;
+}
+.login-container_form form{
+    /* border: 1px solid black; */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 70%;
+    padding: 20px;
+    border-radius: 20px;
+    position: relative;
+}
+
+  .form-title {
+    font-size: 28px;
+    color: #121958c5;
+    font-weight: 600;
+    letter-spacing: -1px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-left: 30px;
+  }
+  
+  .form-title::before,.form-title::after {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    left: 0px;
+    background-color: #121958c5;
+}
+
+.form-title::before {
+    width: 18px;
+    height: 18px;
+    background-color: #121958c5;
+}
+  
+.form-title::after {
+    width: 18px;
+    height: 18px;
+    animation: pulse 1s linear infinite;
+}
+
+.form-message{
+    color: #747373;
+    padding-left: 10px;
+    max-width :95%; 
+}
+.form-input{
+    margin-top: 10px;
+    max-width: 90% ;
+    display: flex;
+    border-radius: 10px;
+    border: 1px solid #747373;
+    width: 100%;
+}
+
+.form-input:first-of-type{
+    margin-top: 30px;
+}
+.form-input input{
+    width: 100%;
+    padding: 15px 15px;
+    border-radius: 10px;
+    outline: none;
+
+}
+
+.form-input img{
+    width: 25px;
+    object-fit: contain;
+    margin:0 10px;
+}
+
+.from-keepSession{
+    margin-top: 15px;
+    display: flex;
+}
+.from-keepSession span{
+    padding-left: 10px;
+    font-weight: 500;
+}
+.submit {
+    border: none;
+    outline: none;
+    background-color: #020433c5;
+    padding: 10px;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 16px;
+    transition: 0.2s;
+    max-width: 90% ;
+    margin-top: 40px;
+}
+.submit:hover {
+    background-color: #020433be;
+}
+  
+
+  @keyframes pulse {
+    from {
+      transform: scale(0.9);
+      opacity: 1;
+    }
+  
+    to {
+      transform: scale(1.8);
+      opacity: 0;
+    }
+  }
