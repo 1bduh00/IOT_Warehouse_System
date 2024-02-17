@@ -1,8 +1,11 @@
 package com.example.backend.service.impl;
 
 import org.eclipse.paho.client.mqttv3.*;
+import org.springframework.stereotype.Service;
+
 import com.example.backend.service.MqttService;
 
+@Service
 public class MqttServiceImpl implements MqttService {
 
     private String serverUri = "tcp://192.168.11.113:1883";
