@@ -22,8 +22,19 @@ function Dashboard() {
 
     useEffect(() => {
         console.log('WebSocket connection is established and ready:', webSocketConnection);
-  }, [webSocketConnection]);
-  return (
+        if(webSocketConnection){
+            webSocketConnection.subscribe("/topic/sensor-data",onReceivemessage)
+            webSocketConnection.send("/app/private-room",{},"hi ana")
+        }
+    }, [webSocketConnection]);
+
+    const onReceivemessage = (payload)=>{
+        console.log(payload)
+        let payloadData = JSON.parse(payload.body)
+        console.log(payloadData)
+    }
+
+    return (
     <div className="Dashboard_container">
         <Sidebar>
             <SidebarItem 

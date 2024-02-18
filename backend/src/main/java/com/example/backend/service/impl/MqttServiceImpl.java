@@ -1,12 +1,16 @@
 package com.example.backend.service.impl;
 
 import org.eclipse.paho.client.mqttv3.*;
+import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 
 import com.example.backend.service.MqttService;
 
 @Service
 public class MqttServiceImpl implements MqttService {
+
+    private SimpMessagingTemplate messagingTemplate;
 
     private String serverUri = "tcp://192.168.11.113:1883";
     private String clientId = "Id";
@@ -29,6 +33,7 @@ public class MqttServiceImpl implements MqttService {
         }
     }
 
+    @SendTo("/topic/data")
     public void receiveMessage() {
         try (MqttClient mqttClient = new MqttClient(serverUri, clientId)) {
 
@@ -37,7 +42,7 @@ public class MqttServiceImpl implements MqttService {
             mqttClient.subscribe("sensor_data", (t, msg) -> {
                 String payload = new String(msg.getPayload());
                 System.out.println("Received message on topic '" + t + "': " + payload);
-
+                // messagingTemplate.convertAndSend("/topic/sensor-data", payload);
             });
 
             // Keep the application running or use a separate mechanism for asynchronous
