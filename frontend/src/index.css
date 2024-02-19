@@ -2,7 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-/* :root {
-    --NavBar : #7B40F2;
+:root {
+    --primary-color : #0c2281c5;
+    --hover : #0c2181ad;
     
-} */
+}

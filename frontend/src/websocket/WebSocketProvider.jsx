@@ -27,18 +27,19 @@ export const WebSocketProvider = ({ children }) => {
   };
 
   
-  // const closeConnection = () => {
-  //   if (webSocketConnection) {
-  //     // Your logic to close the WebSocket connection
-  //     webSocketConnection.close();
-  //     // setWebSocketConnection(null);
-  //   }
-  // };
+  const closeConnection = () => {
+    if (webSocketConnection) {
+      // Your logic to close the WebSocket connection
+      webSocketConnection.close();
+      // setWebSocketConnection(null);
+    }
+  };
 
   // Provide the context value to the components within the subtree
   const contextValue = {
     webSocketConnection,
     establishConnection,
+    closeConnection,
   };
 
   return (

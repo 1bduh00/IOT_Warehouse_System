@@ -15,6 +15,6 @@ public class WsController {
 
     @MessageMapping("/private-room")
     public void StartRecievingMssg(String mssg) {
-        mqttService.receiveMessage();
+        mqttService.senToMqtt("change state", "private_room");
     }
 }
