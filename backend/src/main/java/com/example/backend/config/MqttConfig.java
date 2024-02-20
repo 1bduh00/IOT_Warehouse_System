@@ -71,6 +71,7 @@ public class MqttConfig {
                     System.out.println("This is the topic");
                 }
                 String payload = (String) message.getPayload();
+                System.out.println(payload);
                 messagingTemplate.convertAndSend("/topic/data", payload);
 
             }
