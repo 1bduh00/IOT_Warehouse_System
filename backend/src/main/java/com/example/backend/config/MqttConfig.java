@@ -68,11 +68,10 @@ public class MqttConfig {
             public void handleMessage(Message<?> message) throws MessagingException {
                 String topic = message.getHeaders().get(MqttHeaders.RECEIVED_TOPIC).toString();
                 if (topic.equals("sensor_data")) {
-                    System.out.println("This is the topic");
+                    String payload = (String) message.getPayload();
+                    System.out.println(payload);
+                    messagingTemplate.convertAndSend("/topic/data", payload);
                 }
-                String payload = (String) message.getPayload();
-                System.out.println(payload);
-                messagingTemplate.convertAndSend("/topic/data", payload);
 
             }
 

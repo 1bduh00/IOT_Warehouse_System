@@ -13,8 +13,8 @@ public class WsController {
 
     private MqttService mqttService;
 
-    @MessageMapping("/private-room")
+    @MessageMapping("/private")
     public void StartRecievingMssg(String mssg) {
-        mqttService.senToMqtt("change state", "private_room");
+        mqttService.senToMqtt(mssg, "private_room");
     }
 }

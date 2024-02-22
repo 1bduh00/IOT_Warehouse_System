@@ -1,37 +1,55 @@
-import asyncio
-from azure.iot.device.aio import IoTHubDeviceClient
-import random
-import json
+import paho.mqtt.client as mqtt
 import time
+import json
+import random
 
-async def send_telemetry(device_connection_string, telemetry_data):
-    # Create an instance of the device client
-    device_client = IoTHubDeviceClient.create_from_connection_string(device_connection_string)
+# MQTT server details
+mqtt_broker = "172.210.194.63"
+mqtt_port = 1883
+topic_to_publish = "sensor_data"
+message_interval_seconds = 5  # Set the interval between messages
 
-    # Connect to Azure IoT Hub
-    await device_client.connect()
+# Callbacks
+def on_connect(client, userdata, flags, rc):
+    if rc == 0:
+        print("Connected to MQTT Broker")
+    else:
+        print(f"Connection failed with code {rc}")
 
-    # Send telemetry data
-    await device_client.send_message(telemetry_data)
+# Create MQTT client
+client = mqtt.Client()
 
-    # Disconnect from Azure IoT Hub
-    await device_client.disconnect()
+# Set on_connect callback
+client.on_connect = on_connect
 
-if __name__ == "__main__":
-    # Replace 'your_device_connection_string' with your actual device connection string
-    device_connection_string = "HostName=Warehouse-hub.azure-devices.net;DeviceId=device1;SharedAccessKey=yTxsdpKSmFe8JP+El4aA5kk/r7pEgwW5qAIoTIPErVY="
-    
-    while True :
-        telemetry_data = {
-        "temperature": random.uniform(10.0, 50.0),
-        "humidity": random.uniform(30.0, 80.0),
-        "pressure": random.uniform(980.0, 1030.0),
-        # Add more fields as needed
+# Connect to MQTT broker
+client.connect(mqtt_broker, mqtt_port, keepalive=60)
+
+# Start the MQTT loop
+client.loop_start()
+
+# Continuous message sending loop
+try:
+    while True:
+        data = {
+             "temperature": round(random.uniform(20, 30), 2),  # Random float between 20 and 30
+            "humidity": round(random.uniform(40, 60), 2),  # Random float between 40 and 60
+            "employees": random.randint(5, 15),
+            "Rac1": random.randint(0,2),
+            "Rac2": random.randint(0,2)
         }
-
-        # Convert dictionary to JSON string
-        telemetry_json = json.dumps(telemetry_data)
-
-        asyncio.run(send_telemetry(device_connection_string, telemetry_json))
+        json_message = json.dumps(data)
+        client.publish(topic_to_publish, json_message)
+        print(f"Published message: {json_message}")
         
-        time.sleep(5)
+        # Wait for the next interval
+        time.sleep(message_interval_seconds)
+
+except KeyboardInterrupt:
+    print("User interrupted the script.")
+
+finally:
+    # Disconnect from the MQTT broker
+    client.loop_stop()
+    client.disconnect()
+    print("Disconnected from MQTT Broker")
