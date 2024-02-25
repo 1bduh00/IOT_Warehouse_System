@@ -1,6 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useWebSocket } from '../websocket/WebSocketProvider'
-import SideBar from '../components/SideBar.jsx';
 import Header from '../components/Header';
 import SensorsData from '../components/SensorsData';
 import humidity from '../assets/humidity.png';
@@ -12,6 +11,8 @@ import Racs from '../components/Racs';
 import RacsComd from '../components/RacsComd';
 import Notif from '../components/Notif';
 import Popup from '../components/Popup';
+import Navbar from '../components/Navbar';
+
 
 
 
@@ -44,10 +45,7 @@ function Dashboard() {
     return (
     <div className="Dashboard_container">
         {DisplayPopup?  <Popup /> : "" }
-        
-        <div className="SideBar">
-           <SideBar />
-        </div>
+        <Navbar />
         <div className="Data-container">
             <div className="Header-section">
                 <Header />

@@ -10,7 +10,7 @@ export const WebSocketProvider = ({ children }) => {
   const establishConnection = async () => {
      // Create a promise to represent the WebSocket connection
      const connectionPromise = new Promise((resolve, reject) => {
-      const connection = new SockJS('http://localhost:8080/ws');
+      const connection = new SockJS('http://172.171.247.161:8080/ws');
       const stompClient = Stomp.over(connection);
       stompClient.connect({}, () => {
         console.log('WebSocket connection established');
@@ -52,6 +52,5 @@ export const WebSocketProvider = ({ children }) => {
 };
 
 export const useWebSocket = () => {
-  // A custom hook to conveniently access the context value
   return useContext(WebSocketContext);
 };
