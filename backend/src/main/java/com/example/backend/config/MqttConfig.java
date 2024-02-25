@@ -32,9 +32,6 @@ public class MqttConfig {
         MqttConnectOptions options = new MqttConnectOptions();
 
         options.setServerURIs(new String[] { "tcp://172.210.194.63:1883" });
-        // options.setUserName("abdo");
-        // String pass = "passwd";
-        // options.setPassword(pass.toCharArray());
         options.setCleanSession(true);
 
         factory.setConnectionOptions(options);
