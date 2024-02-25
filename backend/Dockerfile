@@ -1,5 +1,5 @@
 # Use the official Maven image as the base image
-FROM maven:19-openjdk-21 AS build
+FROM maven:latest AS build
 
 # Set the working directory
 WORKDIR /app
