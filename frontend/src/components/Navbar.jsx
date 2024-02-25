@@ -3,10 +3,10 @@ import Orta from "../assets/Orta.png"
 import dash from "../assets/dash.png"
 import logout from "../assets/logout.png"
 
-function SideBar() {
+function Navbar() {
   return (
-    <>
-     <div className="SideBar-logo">
+    <div className="SideBar">
+         <div className="SideBar-logo">
         <img src={Orta} alt="" />
         <span>ORTA</span>
     </div>
@@ -19,8 +19,8 @@ function SideBar() {
     <div className="SideBar-logout">
         <img src={logout} alt="" />
     </div>
-    </>
+    </div>
   )
 }
 
-export default SideBar
+export default Navbar
