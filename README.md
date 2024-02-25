@@ -45,3 +45,19 @@ Azure IoT Hub: Receives device data and routes it to Functions for analysis.
 Azure Functions: Analyze sensor readings in real-time to detect potential faults.
 Database: Stores historical sensor data for trend analysis and maintenance records.
 Web App: Displays equipment health status, alerts maintenance teams of potential issues, and provides historical insights for maintenance planning.
+
+
+#remove existant images
+docker rmi -f backendapp:latest
+docker rmi -f frontendapp:latest
+docker rmi -f abdo001/iot_system:front
+docker rmi -f abdo001/iot_system:back
+#build and create tags
+docker build -t backendapp backend
+docker build -t frontendapp frontend
+docker tag frontendapp abdo001/iot_system:front
+docker tag backendapp abdo001/iot_system:back
+docker push abdo001/iot_system:front
+docker push abdo001/iot_system:back
+
+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

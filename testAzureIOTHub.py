@@ -3,11 +3,12 @@ import time
 import json
 import random
 
+
 # MQTT server details
 mqtt_broker = "172.210.194.63"
 mqtt_port = 1883
 topic_to_publish = "sensor_data"
-message_interval_seconds = 5  # Set the interval between messages
+message_interval_seconds = 10  # Set the interval between messages
 
 # Callbacks
 def on_connect(client, userdata, flags, rc):
@@ -32,12 +33,13 @@ client.loop_start()
 try:
     while True:
         data = {
-             "temperature": round(random.uniform(20, 30), 2),  # Random float between 20 and 30
-            "humidity": round(random.uniform(40, 60), 2),  # Random float between 40 and 60
+             "temperature": round(random.uniform(0, 35), 2),  # Random float between 20 and 30
+            "humidity": round(random.uniform(0, 60), 2),  # Random float between 40 and 60
             "employees": random.randint(5, 15),
             "Rac1": random.randint(0,2),
             "Rac2": random.randint(0,2)
         }
+        
         json_message = json.dumps(data)
         client.publish(topic_to_publish, json_message)
         print(f"Published message: {json_message}")
