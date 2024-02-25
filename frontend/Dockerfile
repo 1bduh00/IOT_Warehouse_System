@@ -5,6 +5,7 @@ WORKDIR /app
 
 # Copy package.json and package-lock.json to the container
 COPY package*.json ./
+COPY components/* ./components/
 
 # Install dependencies
 RUN npm install
