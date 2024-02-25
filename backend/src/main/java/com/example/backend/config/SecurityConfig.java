@@ -29,4 +29,19 @@ public class SecurityConfig {
         return http.build();
     }
 
+    @Bean
+    public UserDetailsService userDetailsService() throws Exception {
+        UserDetails user1 = User.withUsername("abdo@gmail.com")
+                .password(encoder().encode("password"))
+                .roles("ADMIN")
+                .build();
+
+        return new InMemoryUserDetailsManager(user1);
+    }
+
+    @Bean
+    public PasswordEncoder encoder() {
+        return new BCryptPasswordEncoder();
+    }
+
 }

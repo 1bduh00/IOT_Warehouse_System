@@ -3,6 +3,7 @@ import "../App.css"
 import loginImage from "../assets/login.jpg"
 import passwd from "../assets/passwd.png"
 import Email from "../assets/email.png"
+import axios from 'axios'
 
 function Login() {
 
