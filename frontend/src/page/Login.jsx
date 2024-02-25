@@ -12,6 +12,7 @@ function Login() {
   const [ValidPassword, setValidPassword] = useState(true);
   const [ShowAlert, setVisible] = useState(false);
 
+ 
   const HandleEmail = (event)=>{
     setEmail(event.target.value)
     if(event.target.value === "abdo@gmail.com"){
@@ -29,9 +30,9 @@ const HandlePassword = (event)=>{
     }
 
 }
-  const Login = () => {
+  const Login = async() => {
     if(validEmail && ValidPassword){  
-        window.location.href ="/Dashboard"
+      window.location.href ="/Dashboard"
     }else{
       setVisible(true)
       setTimeout(()=>{

@@ -9,9 +9,9 @@ function Racs(props) {
       switch(props.rac1){
         case 0 : setHrac1(0)
         break;
-        case 1 : setHrac1("4rem")
+        case "1" : setHrac1("4rem")
         break;
-        case 2 : setHrac1("8rem")
+        case "2" : setHrac1("8rem")
         break;
         default : setHrac1(0)
       }
@@ -21,7 +21,7 @@ function Racs(props) {
       switch(props.rac2){
         case 0 : setHrac2(0)
         break;
-        case 1 : setHrac2("4rem")
+        case "1" : setHrac2("4rem")
         break;
         case 2 : setHrac2("8rem")
         break;

@@ -2,11 +2,11 @@ import './App.css';
 import Dashboard from './page/Dashboard';
 import { BrowserRouter, Route, Routes  } from 'react-router-dom';
 import Login from './page/Login'
-import { WebSocketProvider } from './websocket/WebSocketProvider';
+import { WebSocketProvider, useWebSocket } from './websocket/WebSocketProvider';
 
 
 function App() {
-
+  
   return (
     <div className="App">
       <WebSocketProvider>
