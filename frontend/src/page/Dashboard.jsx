@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useWebSocket } from '../websocket/WebSocketProvider'
-import SideBar from '../components/SideBar';
+import SideBar from '../components/SideBar.jsx';
 import Header from '../components/Header';
 import SensorsData from '../components/SensorsData';
 import humidity from '../assets/humidity.png';
