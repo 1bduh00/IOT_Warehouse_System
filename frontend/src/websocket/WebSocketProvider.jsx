@@ -52,6 +52,5 @@ export const WebSocketProvider = ({ children }) => {
 };
 
 export const useWebSocket = () => {
-  // A custom hook to conveniently access the context value
   return useContext(WebSocketContext);
 };
