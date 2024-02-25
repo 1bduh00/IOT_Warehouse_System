@@ -71,6 +71,10 @@ public class MqttConfig {
                     String payload = (String) message.getPayload();
                     System.out.println(payload);
                     messagingTemplate.convertAndSend("/topic/data", payload);
+                } else if (topic.equals("room_open")) {
+                    String payload = (String) message.getPayload();
+                    System.out.println(payload);
+                    messagingTemplate.convertAndSend("/topic/room_open", payload);
                 }
 
             }
