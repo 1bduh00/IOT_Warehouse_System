@@ -8,7 +8,7 @@ import axios from 'axios'
 function Login() {
 
   const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [mdp, setPassword] = useState();
   const [validEmail, setValidEmail] = useState(false);
   const [ValidPassword, setValidPassword] = useState(true);
   const [ShowAlert, setVisible] = useState(false);
@@ -16,32 +16,41 @@ function Login() {
  
   const HandleEmail = (event)=>{
     setEmail(event.target.value)
-    if(event.target.value === "abdo@gmail.com"){
-      setValidEmail(true)
-    }else{
-      setValidEmail(false)
-    }
 }
 const HandlePassword = (event)=>{
     setPassword(event.target.value)
-    if(event.target.value === "password"){
-      setValidPassword(true)
-    }else{
-      setValidPassword(false)
-    }
-
 }
   const Login = async() => {
-    if(validEmail && ValidPassword){  
-      window.location.href ="/Dashboard"
+    const obj = {
+      username : email,
+      password : mdp
+    }
+    if(email && mdp){
+      axios.post("http://localhost:8080/api/login",obj)
+      .then(response => {
+        const token = response.data.token
+        if(token){
+          localStorage.setItem('accessToken', token);
+          window.location.href = '/Dashboard';
+        }else{
+          setVisible(true)
+          setTimeout(()=>{
+            setVisible(false)
+          },2500)
+        }
+        
+      })
+      .catch(error => {
+        // Handle errors
+        console.error('Error fetching data:', error);
+      });
     }else{
       setVisible(true)
-      setTimeout(()=>{
-        setVisible(false)
-      },2500)
-      
+          setTimeout(()=>{
+            setVisible(false)
+          },2500)
     }
-    // window.location.href ="/dashboard"
+    
   };
   return (
     <div className='login-container'>

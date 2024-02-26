@@ -10,9 +10,14 @@ export const WebSocketProvider = ({ children }) => {
   const establishConnection = async () => {
      // Create a promise to represent the WebSocket connection
      const connectionPromise = new Promise((resolve, reject) => {
-      const connection = new SockJS('http://172.171.247.161:8080/ws');
+      const connection = new SockJS('http://localhost:8080/ws');
       const stompClient = Stomp.over(connection);
-      stompClient.connect({}, () => {
+
+      const token = localStorage.getItem("accessToken")
+      const headers = {
+        Authorization: `Bearer ${token}`,
+      };
+      stompClient.connect(headers, () => {
         console.log('WebSocket connection established');
         
         resolve(stompClient);

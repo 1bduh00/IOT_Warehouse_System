@@ -4,6 +4,11 @@ import dash from "../assets/dash.png"
 import logout from "../assets/logout.png"
 
 function Navbar() {
+
+  const Logout = ()=>{
+    localStorage.removeItem('accessToken');
+    window.location.href = "/"
+  }
   return (
     <div className="SideBar">
          <div className="SideBar-logo">
@@ -16,7 +21,7 @@ function Navbar() {
             <span>Dashboard</span>
         </div>
     </div>
-    <div className="SideBar-logout">
+    <div className="SideBar-logout" onClick={Logout}>
         <img src={logout} alt="" />
     </div>
     </div>

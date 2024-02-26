@@ -71,6 +71,7 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 .Data-container{
     width: 83%;
@@ -477,6 +478,10 @@ a {
 .alert{
     color: rgb(202, 5, 5);
     font-weight: 600;
+    width: fit-content;
+    padding: 0;
+    z-index: 10;
+    margin: 0;
     /* transition: 2.5s; */
 }
 
@@ -506,7 +511,7 @@ a {
     height: 18px;
     background-color: var(--primary-color);
 }
-  
+
 .form-title::after {
     width: 18px;
     height: 18px;
@@ -517,6 +522,7 @@ a {
     color: #747373;
     padding-left: 10px;
     max-width :80%; 
+    font-size: 13px;
     /* border: 1px solid black; */
 }
 .form-input{

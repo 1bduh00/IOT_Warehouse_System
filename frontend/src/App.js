@@ -2,18 +2,31 @@ import './App.css';
 import Dashboard from './page/Dashboard';
 import { BrowserRouter, Route, Routes  } from 'react-router-dom';
 import Login from './page/Login'
-import { WebSocketProvider, useWebSocket } from './websocket/WebSocketProvider';
+import { WebSocketProvider } from './websocket/WebSocketProvider';
+import { jwtDecode } from 'jwt-decode';
 
 
 function App() {
   
+  const isAuthenticated = () => {
+    // Check if the authentication token is present and not expired
+    const token = localStorage.getItem('accessToken'); // Assuming you store the token in localStorage
+    if (token !== null ) {
+      const decodedToken = jwtDecode(token);
+      // Check if the token is expired
+      const isTokenExpired = decodedToken.exp < Date.now() / 1000;
+      return !isTokenExpired;
+    }
+    return false;
+  };
+
   return (
     <div className="App">
       <WebSocketProvider>
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Login />} />
-              <Route path="/Dashboard" element={<Dashboard />} />
+              <Route path="/Dashboard" element={isAuthenticated() ? <Dashboard /> : "NOT ALLOWED"} />
             </Routes>
           </BrowserRouter>
         </WebSocketProvider>

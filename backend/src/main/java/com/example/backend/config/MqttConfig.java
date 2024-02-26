@@ -73,9 +73,7 @@ public class MqttConfig {
                     System.out.println(payload);
                     messagingTemplate.convertAndSend("/topic/room_open", payload);
                 }
-
             }
-
         };
     }
 
