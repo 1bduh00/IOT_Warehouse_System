@@ -26,7 +26,7 @@ const HandlePassword = (event)=>{
       password : mdp
     }
     if(email && mdp){
-      axios.post("http://localhost:8080/api/login",obj)
+      axios.post("http://172.171.247.161:8080/api/login",obj)
       .then(response => {
         const token = response.data.token
         if(token){

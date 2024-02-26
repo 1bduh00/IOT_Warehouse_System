@@ -14,7 +14,7 @@ public class WebConfig {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
-        config.addAllowedOrigin("http://localhost:3000");
+        config.addAllowedOrigin("http://demod.eastus.cloudapp.azure.com");
         config.addAllowedMethod("*");
         config.addAllowedHeader("*");
         config.setMaxAge(3600L);
