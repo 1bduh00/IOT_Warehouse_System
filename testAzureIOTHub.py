@@ -33,7 +33,7 @@ client.loop_start()
 try:
     while True:
         data = {
-             "temperature": round(random.uniform(0, 35), 2),  # Random float between 20 and 30
+             "temperature": round(random.uniform(0, 35), 4),  # Random float between 20 and 30
             "humidity": round(random.uniform(0, 60), 2),  # Random float between 40 and 60
             "employees": random.randint(5, 15),
             "Rac1": random.randint(0,2),
