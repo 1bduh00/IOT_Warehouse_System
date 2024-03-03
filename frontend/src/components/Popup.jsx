@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react'
 import { useWebSocket } from '../websocket/WebSocketProvider';
 
 function Popup() {
-  const { webSocketConnection, setPopup , DisplayPopup} = useWebSocket();
+  const { webSocketConnection, setPopup  , setFalseCode , setTrueCode} = useWebSocket();
   const inputRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
   const Code = Array.from({ length: 4 });
   
@@ -17,15 +17,22 @@ function Popup() {
     else if (index === inputRefs.length - 1){
       setPopup(false)
       if(webSocketConnection && Code.join("") === "0258"){
-          webSocketConnection.send("/app/private-room",{},"ON")
+          webSocketConnection.send("/app/private",{},"ON")
+          setTrueCode(true)
+      }else{
+        setFalseCode(true)
+        setTrueCode(false)
       }
-      
     }
     // You can add additional logic here, such as handling the entered code
   };
 
+  const setFalse = ()=>{
+    setPopup(false)
+    setTrueCode(false)
+  }
   return (
-    <div class="private-room_popup" onClick={()=> setPopup(false)}>
+    <div class="private-room_popup" onClick={setFalse}>
         <div className="code" onClick={(e)=> e.stopPropagation()}>
             <div className="EnterCode">Enter Code</div>
             <div className="Inputs">

@@ -7,7 +7,7 @@ function Temperature(props) {
         <div className="Temperature-container">
           <img src={tmp} alt="" />
           <span>Temperature</span>
-          <span>{props.value} C°</span>
+          <span>{parseFloat(props.value).toFixed(2)} C°</span>
         </div>
     </div>
   )

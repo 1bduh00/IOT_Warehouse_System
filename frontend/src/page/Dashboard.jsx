@@ -14,10 +14,8 @@ import Popup from '../components/Popup';
 import Navbar from '../components/Navbar';
 
 
-
-
 function Dashboard() {
-    const { webSocketConnection, establishConnection , closeConnection , DisplayPopup } = useWebSocket();
+    const { webSocketConnection, establishConnection  , DisplayPopup } = useWebSocket();
     const [sensorData , setSensorData] = useState();
     
 
@@ -38,7 +36,8 @@ function Dashboard() {
 
 
     const onReceivemessage = (payload)=>{
-        console.log(JSON.parse(payload.body))
+        const resp = JSON.parse(payload.body)
+        console.log(resp.humidity)
         setSensorData(JSON.parse(payload.body))
     }
 
@@ -53,7 +52,7 @@ function Dashboard() {
             <div className="Sensors-section">
                 <SensorsData title="Humidity" prctg={sensorData ? sensorData.humidity : "0"} img={humidity} />
                 <SensorsData title="Employees" prctg={sensorData ? sensorData.employees : "0"} img={employees} />
-                <SensorsData title="Lighting" button="yes" img={lights} />
+                <SensorsData title="Gas" prctg={sensorData ? sensorData.Gas : "0"} img={employees} />
                 <SensorsData title="private" button="yes" img={room} />
             </div>
             <div className="Events-section">

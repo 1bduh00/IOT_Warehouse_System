@@ -5,7 +5,7 @@ import Great from "../assets/Great.png"
 import { useWebSocket } from '../websocket/WebSocketProvider';
 
 function Notif(props) {
-    const { webSocketConnection } = useWebSocket();
+    const { webSocketConnection , falseCode , setFalseCode} = useWebSocket();
     const [EventsList, setMyList] = useState([]);
 
     useEffect(()=>{
@@ -19,12 +19,11 @@ function Notif(props) {
                 }
               ]); 
         }
-        if(props.data.humidity > 50){
-            console.log("humidity")
+        if(props.data.humidity > 60){
             setMyList(prevList => [
                 ...prevList,
                 {
-                  mssg: "The humidity exceeded 50%",
+                  mssg: "The humidity exceeded 60%",
                   img: alert
                 }
               ]);
@@ -39,7 +38,7 @@ function Notif(props) {
 
     const onReceivemessage = (payload)=>{
         const mssg = payload.body
-        if( mssg === "opened" ){
+        if(mssg){
             setMyList(prevList => [
                 ...prevList,
                 {
@@ -48,9 +47,20 @@ function Notif(props) {
                 }
               ]);
         }
-
-        
     }
+
+    useEffect(()=>{
+      if(falseCode){
+        setMyList(prevList => [
+          ...prevList,
+          {
+            mssg: "Incorrect code to open the private room ",
+            img: ntf
+          }
+        ]);
+        setFalseCode(false)
+      }
+    },[falseCode])
   return (
     <div className='Notif'>
         <div className="Notif-container">

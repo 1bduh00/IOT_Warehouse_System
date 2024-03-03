@@ -5,11 +5,11 @@ import Arrow from "../assets/Arrow.png"
 function Header() {
   return (
     <>
-    <div className="header-section_profile">
-        <img src={profile} alt="" />
-        <span>Susan</span>
-        <img src={Arrow} alt="" />
-    </div>
+      <div className="header-section_profile">
+          <img src={profile} alt="" />
+          <span>Susan</span>
+          <img src={Arrow} alt="" />
+      </div>
     </>
   )
 }

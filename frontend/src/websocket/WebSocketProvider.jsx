@@ -6,6 +6,8 @@ const WebSocketContext = createContext();
 export const WebSocketProvider = ({ children }) => {
   const [webSocketConnection, setWebSocketConnection] = useState(null);
   const [DisplayPopup , setPopup] = useState(false)
+  const [falseCode , setFalseCode] = useState(false)
+  const [trueCode , setTrueCode] = useState(false)
 
   const establishConnection = async () => {
      // Create a promise to represent the WebSocket connection
@@ -46,7 +48,11 @@ export const WebSocketProvider = ({ children }) => {
     establishConnection,
     closeConnection,
     DisplayPopup,
-    setPopup
+    setPopup,
+    falseCode,
+    setFalseCode,
+    setTrueCode,
+    trueCode
   };
 
   return (

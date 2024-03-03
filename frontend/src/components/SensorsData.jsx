@@ -3,38 +3,33 @@ import { useWebSocket } from '../websocket/WebSocketProvider';
 
 function SensorsData(props) {
 
-  const { webSocketConnection ,DisplayPopup,  setPopup} = useWebSocket();
+  const {webSocketConnection,DisplayPopup,  setPopup , setTrueCode,trueCode} = useWebSocket();
   const [State , setState] = useState(false);
   const checkboxRef = useRef(null);
-
+  
   useEffect(()=>{
-    // console.log(State)
-    if(webSocketConnection){
-      if(State){
-        webSocketConnection.send(`/app/${props.title}`,{},"ON")
-      }else{
-        webSocketConnection.send(`/app/${props.title}`,{},"OFF")
-      }
-      
-  }
-  },[State])
-
-  useEffect(()=>{
-    if(!DisplayPopup){
+    if(!DisplayPopup && !trueCode){
       setState(false)
       if (checkboxRef.current) {
         checkboxRef.current.checked = false;
       }
     }
+
   },[DisplayPopup])
 
 
   const handleState = ()=>{
+    if(State){
+      if(webSocketConnection){
+        webSocketConnection.send("/app/private",{},"OFF")
+        setState(false)
+        setTrueCode(false)
+      }
+    }
     setState(!State)
-    if(props.title === "private"){
+    if(props.title === "private" && !State){
       setPopup(true)
     }
-    
   }
 
   return (
@@ -44,12 +39,13 @@ function SensorsData(props) {
         <span>{props.title}</span>
         </div>
         {
-            props.prctg ? 
-            <span className='prctg'>{props.title === "Employees" ? props.prctg : props.prctg +"%"} </span> : 
-              <label class="switch">
-                  <input type="checkbox" ref={checkboxRef}/>
-                  <span class="slider"  onClick={handleState}></span>
-              </label>
+            props.button ?
+            <label class="switch"> 
+            <input type="checkbox" ref={checkboxRef}/> 
+            <span class="slider"  onClick={handleState}></span> 
+            </label>
+              :
+            <span className='prctg'>{props.title === "Employees" ? props.prctg : props.prctg +"%"} </span> 
         }
         
     </div>
