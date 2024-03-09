@@ -57,7 +57,7 @@ function Dashboard() {
             </div>
             <div className="Events-section">
                 <Temperature value={sensorData ? sensorData.temperature : "0"}/>
-                <Racs rac1={sensorData ? sensorData.Rac1 : "1"} rac2={sensorData ? sensorData.Rac2 : "2"} />
+                <Racs rac1={sensorData ? sensorData.Rac1 : 0} rac2={sensorData ? sensorData.Rac2 : 0} />
             </div>
             <div className="Notif-section">
                 <RacsComd />
