@@ -23,5 +23,4 @@ public class AuthController {
     public ResponseEntity<JwtResponse> login(@RequestBody LoginRequest loginRequest) {
         return ResponseEntity.ok(authService.Login(loginRequest));
     }
-
 }

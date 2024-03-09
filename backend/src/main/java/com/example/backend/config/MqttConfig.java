@@ -75,18 +75,19 @@ public class MqttConfig {
                     String payload = (String) message.getPayload();
                     try {
                         JsonNode jsonNode = objectMapper.readTree(payload);
-                        if (jsonNode.get("temperature").asInt() >= 20) {
+                        if (jsonNode.get("temperature").asInt() >= 30) {
                             System.out.println(
                                     smsService.sendSms("+212632458847",
-                                            "Urgent : The temperature exceeded 30°C , with a value of :"
-                                                    + jsonNode.get("temperature").asLong()));
+                                            "Urgent : The temperature exceeded 30°C , with a value of "
+                                                    + jsonNode.get("temperature").asText())
+                                            + "°C");
                         }
-                        // if (jsonNode.get("humidity").asInt() >= 65) {
-                        // System.out.println(
-                        // smsService.sendSms("+212632458847",
-                        // "Urgent : The humidity exceeded 65% , with a value of :"
-                        // + jsonNode.get("humidity").asLong()));
-                        // }
+                        if (jsonNode.get("humidity").asInt() >= 65) {
+                            System.out.println(
+                                    smsService.sendSms("+212632458847",
+                                            "Urgent : The humidity exceeded 65% , with a value of "
+                                                    + jsonNode.get("humidity").asText() + "%"));
+                        }
                     } catch (Exception e) {
                         // TODO: handle exception
                         System.out.println(e.getMessage());
