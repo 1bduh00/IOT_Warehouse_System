@@ -81,14 +81,15 @@ public class MqttConfig {
                                             "Urgent : The temperature exceeded 30°C , with a value of :"
                                                     + jsonNode.get("temperature").asLong()));
                         }
-                        if (jsonNode.get("humidity").asInt() >= 65) {
-                            System.out.println(
-                                    smsService.sendSms("+212632458847",
-                                            "Urgent : The humidity exceeded 65% , with a value of :"
-                                                    + jsonNode.get("humidity").asLong()));
-                        }
+                        // if (jsonNode.get("humidity").asInt() >= 65) {
+                        // System.out.println(
+                        // smsService.sendSms("+212632458847",
+                        // "Urgent : The humidity exceeded 65% , with a value of :"
+                        // + jsonNode.get("humidity").asLong()));
+                        // }
                     } catch (Exception e) {
                         // TODO: handle exception
+                        System.out.println(e.getMessage());
                     }
                     messagingTemplate.convertAndSend("/topic/data", payload);
                 } else if (topic.equals("room_open")) {
