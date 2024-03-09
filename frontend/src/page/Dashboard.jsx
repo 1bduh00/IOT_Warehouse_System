@@ -3,7 +3,6 @@ import { useWebSocket } from '../websocket/WebSocketProvider'
 import Header from '../components/Header';
 import SensorsData from '../components/SensorsData';
 import humidity from '../assets/humidity.png';
-import lights from '../assets/lights.png';
 import employees from '../assets/employees.png';
 import room from '../assets/private.png';
 import Temperature from '../components/Temperature';
@@ -18,7 +17,6 @@ function Dashboard() {
     const { webSocketConnection, establishConnection  , DisplayPopup } = useWebSocket();
     const [sensorData , setSensorData] = useState();
     
-
     useEffect(() => {
         const StartConnection = async () => {
             await establishConnection();
@@ -33,7 +31,6 @@ function Dashboard() {
            
         }
     }, [webSocketConnection]);
-
 
     const onReceivemessage = (payload)=>{
         const resp = JSON.parse(payload.body)
