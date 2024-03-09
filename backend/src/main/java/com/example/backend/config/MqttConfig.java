@@ -18,6 +18,10 @@ import org.springframework.messaging.MessageHandler;
 import org.springframework.messaging.MessagingException;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 
+import com.example.backend.service.SmsService;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import lombok.AllArgsConstructor;
 
 @Configuration
@@ -25,6 +29,7 @@ import lombok.AllArgsConstructor;
 public class MqttConfig {
 
     private SimpMessagingTemplate messagingTemplate;
+    private SmsService smsService;
 
     @Bean
     public MqttPahoClientFactory mqttClientFactory() {
@@ -60,13 +65,31 @@ public class MqttConfig {
     @ServiceActivator(inputChannel = "mqttInputChannel")
     public MessageHandler handler() {
         return new MessageHandler() {
-
+            @SuppressWarnings("null")
             @Override
             public void handleMessage(Message<?> message) throws MessagingException {
                 String topic = message.getHeaders().get(MqttHeaders.RECEIVED_TOPIC).toString();
                 if (topic.equals("sensor_data")) {
+                    // Create an ObjectMapper instance
+                    ObjectMapper objectMapper = new ObjectMapper();
                     String payload = (String) message.getPayload();
-                    System.out.println(payload);
+                    try {
+                        JsonNode jsonNode = objectMapper.readTree(payload);
+                        if (jsonNode.get("temperature").asInt() >= 20) {
+                            System.out.println(
+                                    smsService.sendSms("+212632458847",
+                                            "Urgent : The temperature exceeded 30°C , with a value of :"
+                                                    + jsonNode.get("temperature").asLong()));
+                        }
+                        if (jsonNode.get("humidity").asInt() >= 65) {
+                            System.out.println(
+                                    smsService.sendSms("+212632458847",
+                                            "Urgent : The humidity exceeded 65% , with a value of :"
+                                                    + jsonNode.get("humidity").asLong()));
+                        }
+                    } catch (Exception e) {
+                        // TODO: handle exception
+                    }
                     messagingTemplate.convertAndSend("/topic/data", payload);
                 } else if (topic.equals("room_open")) {
                     String payload = (String) message.getPayload();
