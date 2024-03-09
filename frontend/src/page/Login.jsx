@@ -5,6 +5,7 @@ import passwd from "../assets/passwd.png"
 import Email from "../assets/email.png"
 import axios from 'axios'
 
+
 function Login() {
 
   const [email, setEmail] = useState();
@@ -12,7 +13,7 @@ function Login() {
   // const [validEmail, setValidEmail] = useState(false);
   // const [ValidPassword, setValidPassword] = useState(true);
   const [ShowAlert, setVisible] = useState(false);
-
+  
  
   const HandleEmail = (event)=>{
     setEmail(event.target.value)
@@ -26,7 +27,7 @@ const HandlePassword = (event)=>{
       password : mdp
     }
     if(email && mdp){
-      axios.post("http://localhost:8080/api/login",obj)
+      axios.post("http://172.171.247.161:8080/api/login",obj)
       .then(response => {
         const token = response.data.token
         if(token){
