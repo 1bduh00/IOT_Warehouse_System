@@ -9,8 +9,8 @@ function Login() {
 
   const [email, setEmail] = useState();
   const [mdp, setPassword] = useState();
-  const [validEmail, setValidEmail] = useState(false);
-  const [ValidPassword, setValidPassword] = useState(true);
+  // const [validEmail, setValidEmail] = useState(false);
+  // const [ValidPassword, setValidPassword] = useState(true);
   const [ShowAlert, setVisible] = useState(false);
 
  

@@ -30,13 +30,4 @@ public class AuthController {
         return ResponseEntity.ok(authService.Login(loginRequest));
     }
 
-    @GetMapping("/admin")
-    public String hello() {
-        return "admin";
-    }
-
-    @GetMapping("/user")
-    public String user() {
-        return "user";
-    }
 }

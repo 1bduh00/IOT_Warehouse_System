@@ -69,7 +69,8 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
                     }
                 } catch (Exception e) {
                     // Log or handle the exception
-                    // System.out.println("Error processing WebSocket CONNECT message", e);
+                    // System.out.println("Error processing WebSocket CONsNECT message", e);
+
                 }
 
                 return message;
