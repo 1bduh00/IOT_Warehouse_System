@@ -61,6 +61,7 @@ function Dashboard() {
                 <Notif data={sensorData? sensorData : ""} />
             </div>
         </div>
+
     </div>
     
   )

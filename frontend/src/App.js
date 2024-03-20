@@ -4,6 +4,8 @@ import { BrowserRouter, Route, Routes  } from 'react-router-dom';
 import Login from './page/Login'
 import { WebSocketProvider } from './websocket/WebSocketProvider';
 import { jwtDecode } from 'jwt-decode';
+import Notfound from './page/Notfound';
+import NotAllowed from './page/NotAllowed';
 
 
 function App() {
@@ -26,7 +28,8 @@ function App() {
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Login />} />
-              <Route path="/Dashboard" element={isAuthenticated() ? <Dashboard /> : "NOT ALLOWED"} />
+              <Route path="/Dashboard" element={isAuthenticated() ? <Dashboard /> : <NotAllowed/>} />
+              <Route path="*" element={<Notfound/>} /> {/* This route will match any path */}
             </Routes>
           </BrowserRouter>
         </WebSocketProvider>
