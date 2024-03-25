@@ -9,7 +9,7 @@ COPY ./pom.xml /app
 COPY ./src /app/src
 
 # Build the application
-RUN mvn clean package -Dmaven.test.skip=true
+RUN mvn clean package
 
 # Create a new image for running the application
 FROM openjdk:21-jdk
