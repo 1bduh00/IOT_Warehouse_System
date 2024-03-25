@@ -1,22 +1,24 @@
-# Stage 1: Build the application
+# Use the official Maven image as the base image
 FROM maven:latest AS build
+
+# Set the working directory
 WORKDIR /app
 
-# Copy only the necessary files for dependency resolution
-COPY ./pom.xml ./pom.xml
-RUN mvn dependency:go-offline
-
-# Copy the rest of the application source code
-COPY ./src ./src
+# Copy the pom.xml and any other necessary configuration files
+COPY ./pom.xml /app
+COPY ./src /app/src
+COPY ./target /app/target
 
 # Build the application
-RUN mvn package -DskipTests
+RUN mvn clean package -Dmaven.test.skip=true
 
-# Stage 2: Create a new image for running the application
-FROM openjdk:17-jdk-slim AS runtime
+# Create a new image for running the application
+FROM openjdk:21-jdk
+
+# Set the working directory
 WORKDIR /app
 
-# Copy the built JAR file from the build stage
+# Copy the built JAR file from the previous stage
 COPY --from=build /app/target/*.jar app.jar
 
 # Expose the port on which the Spring Boot application will run
