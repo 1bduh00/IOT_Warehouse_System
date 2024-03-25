@@ -17,4 +17,9 @@ public class WsController {
     public void StartRecievingMssg(String mssg) {
         mqttService.senToMqtt(mssg, "private_room");
     }
+
+    @MessageMapping("/Ventilateur")
+    public void SendMessage(String mssg) {
+        mqttService.senToMqtt(mssg, "Ventilateur");
+    }
 }

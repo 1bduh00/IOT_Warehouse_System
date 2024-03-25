@@ -75,22 +75,38 @@ public class MqttConfig {
                     String payload = (String) message.getPayload();
                     try {
                         JsonNode jsonNode = objectMapper.readTree(payload);
+<<<<<<< HEAD
                         if (jsonNode.get("temperature").asInt() >= 30) {
                             System.out.println(
                                     smsService.sendSms("+212632458847",
                                             "Urgent : The temperature exceeded 30°C , with a value of "
                                                     + jsonNode.get("temperature").asText())
                                             + "°C");
+=======
+                        if (jsonNode.get("temperature").asInt() >= 20) {
+                            System.out.println(
+                                    smsService.sendSms("+212632458847",
+                                            "Urgent : The temperature exceeded 30°C , with a value of :"
+                                                    + jsonNode.get("temperature").asLong()));
+>>>>>>> NewFeatures
                         }
                         if (jsonNode.get("humidity").asInt() >= 65) {
                             System.out.println(
                                     smsService.sendSms("+212632458847",
+<<<<<<< HEAD
                                             "Urgent : The humidity exceeded 65% , with a value of "
                                                     + jsonNode.get("humidity").asText() + "%"));
                         }
                     } catch (Exception e) {
                         // TODO: handle exception
                         System.out.println(e.getMessage());
+=======
+                                            "Urgent : The humidity exceeded 65% , with a value of :"
+                                                    + jsonNode.get("humidity").asLong()));
+                        }
+                    } catch (Exception e) {
+                        // TODO: handle exception
+>>>>>>> NewFeatures
                     }
                     messagingTemplate.convertAndSend("/topic/data", payload);
                 } else if (topic.equals("room_open")) {

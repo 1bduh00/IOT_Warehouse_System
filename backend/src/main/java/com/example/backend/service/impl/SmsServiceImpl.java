@@ -14,7 +14,7 @@ import com.twilio.rest.api.v2010.account.Message;
 public class SmsServiceImpl implements SmsService {
 
     private String ACCOUNT_SID = "AC6de7145b43a97784e742d746689a3c9b";
-    private String AUTH_TOKEN = "324abf76a9a25751f58e700982d0cb98";
+    private String AUTH_TOKEN = "789e605ae6a3be8a80feb386e6a9cc29";
 
     public SmsServiceImpl() {
         Twilio.init(ACCOUNT_SID, AUTH_TOKEN);

@@ -8,6 +8,7 @@ function Popup() {
   
 
   const handleInputChange = (index, e) => {
+    
     const value = e.target.value;
     // Move focus to the next input when a digit is entered
     Code[index] = value
@@ -32,10 +33,10 @@ function Popup() {
     setTrueCode(false)
   }
   return (
-    <div class="private-room_popup" onClick={setFalse}>
-        <div className="code" onClick={(e)=> e.stopPropagation()}>
-            <div className="EnterCode">Enter Code</div>
-            <div className="Inputs">
+    <div class="absolute flex justify-center items-center z-10 w-full h-full bg-gray-400 bg-opacity-50 " onClick={setFalse}>
+        <div className="w-80 h-32 bg-white rounded" onClick={(e)=> e.stopPropagation()}>
+            <div className="flex px-2 justify-center text-xl font-medium py-2">Enter Code</div>
+            <div className="w-4/5 flex justify-evenly ml-8 mt-3">
                 {inputRefs.map((ref, index) => (
                   <input
                     key={index}
@@ -43,10 +44,9 @@ function Popup() {
                     maxLength="1"
                     ref={ref}
                     onChange={(e) => handleInputChange(index, e)}
-                    
+                    className='pl-2 border border-gray-300 rounded w-8 h-8 bg-gray-100 bg-opacity-60'
                   />
                 ))}
-              
             </div>
         </div>
     </div>
