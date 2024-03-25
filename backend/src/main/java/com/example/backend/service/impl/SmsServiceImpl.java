@@ -1,6 +1,5 @@
 package com.example.backend.service.impl;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.example.backend.service.SmsService;
@@ -14,11 +13,8 @@ import com.twilio.rest.api.v2010.account.Message;
 @Service
 public class SmsServiceImpl implements SmsService {
 
-    @Value("${twilio.accountSid}")
-    private String ACCOUNT_SID;
-
-    @Value("${twilio.authToken}")
-    private String AUTH_TOKEN;
+    private String ACCOUNT_SID = "ACb47e0e62aef82cada008cb3831a09898";
+    private String AUTH_TOKEN = "9227476ab940037b43c3a1c3c4e9a8a3";
 
     public SmsServiceImpl() {
         Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
