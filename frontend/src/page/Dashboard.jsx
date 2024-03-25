@@ -20,9 +20,9 @@ function Dashboard() {
     useEffect(() => {
         const StartConnection = async () => {
             await establishConnection();
-          };
-          StartConnection()
-      }, []);
+        };
+        StartConnection()
+    }, []);
 
     useEffect(() => {
         // console.log('WebSocket connection is established and ready:', webSocketConnection);
@@ -44,22 +44,6 @@ function Dashboard() {
         <Navbar />
         <div className="w-full flex flex-col">
                 <Header />
-<<<<<<< HEAD
-            </div>
-            <div className="Sensors-section">
-                <SensorsData title="Humidity" prctg={sensorData ? sensorData.humidity : "0"} img={humidity} />
-                <SensorsData title="Employees" prctg={sensorData ? sensorData.employees : "0"} img={employees} />
-                <SensorsData title="Gas" prctg={sensorData ? sensorData.Gas : "0"} img={employees} />
-                <SensorsData title="private" button="yes" img={room} />
-            </div>
-            <div className="Events-section">
-                <Temperature value={sensorData ? sensorData.temperature : "0"}/>
-                <Racs rac1={sensorData ? sensorData.Rac1 : 0} rac2={sensorData ? sensorData.Rac2 : 0} />
-            </div>
-            <div className="Notif-section">
-                <RacsComd />
-                <Notif data={sensorData? sensorData : ""} />
-=======
             <div className='h-full w-full'>
                 <div className="flex justify-between px-12 py-3 flex-wrap">
                     <SensorsData title="Humidity" prctg={sensorData ? sensorData.humidity : "0"} img={humidity} />
@@ -72,9 +56,7 @@ function Dashboard() {
                     <Temperature value={sensorData ? sensorData.temperature : "0"}/>
                     <RacsComd />
                     <Racs rac1={sensorData ? sensorData.Rac1 : 0} rac2={sensorData ? sensorData.Rac2 : 0} />
-
                 </div>
->>>>>>> NewFeatures
             </div>
         </div>
 

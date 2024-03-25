@@ -19,7 +19,8 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     @Override
     public void registerStompEndpoints(@SuppressWarnings("null") StompEndpointRegistry registry) {
         registry.addEndpoint("/ws")
-                .setAllowedOriginPatterns("http://warehouse0.eastus.cloudapp.azure.com")
+                // .setAllowedOriginPatterns("http://warehouse0.eastus.cloudapp.azure.com")
+                .setAllowedOriginPatterns("http://localhost:3000")
                 .withSockJS();
     }
 }
