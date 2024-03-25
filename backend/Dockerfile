@@ -1,23 +1,27 @@
-# Build Stage (large image with build tools)
-FROM adoptopenjdk:21-jre-hotspot AS builder
+# Use the official Maven image as the base image
+FROM maven:latest AS build
 
-# Set working directory (optional based on Spring Boot project structure)
+# Set the working directory
 WORKDIR /app
 
-# Copy your project code (replace with your actual context)
-COPY . .
+# Copy the pom.xml and any other necessary configuration files
+COPY ./pom.xml /app
+COPY ./src /app/src
 
-# Build commands using Maven (adjust for Gradle or others)
-RUN mvn clean package
+# Build the application
+RUN mvn clean package -DskipTests=true
 
-# Final Stage (slim runtime image)
-FROM adoptopenjdk:21-jre-alpine AS runner
+# Create a new image for running the application
+FROM openjdk:21-jdk
 
-# Copy the JAR file from the build 
-COPY --from=builder /app/target/*.jar app.jar
+# Set the working directory
+WORKDIR /app
 
-# Expose the port for your Spring Boot application (adjust if needed)
+# Copy the built JAR file from the previous stage
+COPY --from=build /app/target/*.jar app.jar
+
+# Expose the port on which the Spring Boot application will run
 EXPOSE 8080
 
-# Command to run your Spring Boot application (replace if needed)
+# Command to run the application
 CMD ["java", "-jar", "app.jar"]
