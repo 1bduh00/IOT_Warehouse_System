@@ -7,7 +7,6 @@ WORKDIR /app
 # Copy the pom.xml and any other necessary configuration files
 COPY ./pom.xml /app
 COPY ./src /app/src
-COPY ./target /app/target
 
 # Build the application
 RUN mvn clean package -Dmaven.test.skip=true
