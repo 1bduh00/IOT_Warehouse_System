@@ -13,7 +13,7 @@ RUN mvn clean package
 # Final Stage (slim runtime image)
 FROM adoptopenjdk:21-jre-alpine AS runner
 
-# Copy the JAR file from the build stage
+# Copy the JAR file from the build 
 COPY --from=builder /app/target/*.jar app.jar
 
 # Expose the port for your Spring Boot application (adjust if needed)
