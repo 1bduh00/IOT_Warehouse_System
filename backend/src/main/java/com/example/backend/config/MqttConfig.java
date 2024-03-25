@@ -89,7 +89,6 @@ public class MqttConfig {
                                                     + jsonNode.get("humidity").asLong()));
                         }
                     } catch (Exception e) {
-                        // TODO: handle exception
                         System.out.println(e.getMessage());
                     }
                     messagingTemplate.convertAndSend("/topic/data", payload);
