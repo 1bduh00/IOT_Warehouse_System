@@ -1,4 +1,3 @@
-import './App.css';
 import Dashboard from './page/Dashboard';
 import { BrowserRouter, Route, Routes  } from 'react-router-dom';
 import Login from './page/Login'
@@ -28,7 +27,8 @@ function App() {
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Login />} />
-              <Route path="/Dashboard" element={isAuthenticated() ? <Dashboard /> : <NotAllowed/>} />
+              {/* <Route path="/Dashboard" element={isAuthenticated() ? <Dashboard /> : <NotAllowed/>} /> */}
+              <Route path="/Dashboard" element={<Dashboard />} />
               <Route path="*" element={<Notfound/>} /> {/* This route will match any path */}
             </Routes>
           </BrowserRouter>
