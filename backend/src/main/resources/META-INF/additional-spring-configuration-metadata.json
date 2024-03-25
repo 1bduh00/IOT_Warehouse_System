@@ -1,5 +1,12 @@
-{"properties": [{
-  "name": "TWILIO_ACCOUNT_SID",
-  "type": "java.lang.String",
-  "description": "A description for 'TWILIO_ACCOUNT_SID'"
-}]}
+{"properties": [
+  {
+    "name": "TWILIO_ACCOUNT_SID",
+    "type": "java.lang.String",
+    "description": "A description for 'TWILIO_ACCOUNT_SID'"
+  },
+  {
+    "name": "twilio.accountSid",
+    "type": "java.lang.String",
+    "description": "A description for 'twilio.accountSid'"
+  }
+]}
