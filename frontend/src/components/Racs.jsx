@@ -1,5 +1,7 @@
 import React from 'react'
 import { Bar } from 'react-chartjs-2';
+import { Chart as ChartJS } from "chart.js/auto";
+
 
 
 function Racs(props) {
@@ -53,7 +55,7 @@ function Racs(props) {
 
 
   return (
-    <div className='border rounded shadow-sm md:col-span-2 flex justify-center'>
+    <div className='border rounded shadow-sm md:col-span-2 flex justify-center items-center'>
             <Bar data={data} />
     </div>
   )

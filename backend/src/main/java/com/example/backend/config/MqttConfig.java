@@ -90,6 +90,7 @@ public class MqttConfig {
                         }
                     } catch (Exception e) {
                         // TODO: handle exception
+                        System.out.println(e.getMessage());
                     }
                     messagingTemplate.convertAndSend("/topic/data", payload);
                 } else if (topic.equals("room_open")) {

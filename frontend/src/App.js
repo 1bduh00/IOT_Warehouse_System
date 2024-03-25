@@ -27,8 +27,7 @@ function App() {
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Login />} />
-              {/* <Route path="/Dashboard" element={isAuthenticated() ? <Dashboard /> : <NotAllowed/>} /> */}
-              <Route path="/Dashboard" element={<Dashboard />} />
+              <Route path="/Dashboard" element={isAuthenticated() ? <Dashboard /> : <NotAllowed/>} />
               <Route path="*" element={<Notfound/>} /> {/* This route will match any path */}
             </Routes>
           </BrowserRouter>

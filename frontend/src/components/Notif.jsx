@@ -69,7 +69,7 @@ function Notif(props) {
     },[falseCode])
     
   return (
-    <div className='min-h-20 border rounded shadow-sm md:col-span-3 overflow-auto'>
+    <div className='min-h-20 max-h-56 max-h border rounded shadow-sm md:col-span-3 overflow-auto'>
         <div className='px-3 py-1 text-xl font-medium flex items-center '>
           
           <IoIosNotificationsOutline size={25} />
