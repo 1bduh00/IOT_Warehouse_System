@@ -3,10 +3,12 @@ import alert from "../assets/alert.png"
 import ntf from "../assets/Notif.png"
 import Great from "../assets/Great.png"
 import { useWebSocket } from '../websocket/WebSocketProvider';
+import { IoIosNotificationsOutline } from "react-icons/io";
 
 function Notif(props) {
     const { webSocketConnection , falseCode , setFalseCode} = useWebSocket();
     const [EventsList, setMyList] = useState([]);
+
 
     useEffect(()=>{
         if(props.data.temperature > 30){
@@ -15,7 +17,8 @@ function Notif(props) {
                 ...prevList,
                 {
                   mssg: "The temperature exceeded 30 °C",
-                  img: alert
+                  img: alert,
+                  date : new Date()
                 }
               ]); 
         }
@@ -24,7 +27,8 @@ function Notif(props) {
                 ...prevList,
                 {
                   mssg: "The humidity exceeded 60%",
-                  img: alert
+                  img: alert,
+                  date : new Date()
                 }
               ]);
         }
@@ -43,7 +47,8 @@ function Notif(props) {
                 ...prevList,
                 {
                   mssg: "The private room was opened succefully",
-                  img: Great
+                  img: Great,
+                  date : new Date()
                 }
               ]);
         }
@@ -55,28 +60,37 @@ function Notif(props) {
           ...prevList,
           {
             mssg: "Incorrect code to open the private room ",
-            img: ntf
+            img: ntf,
+            date : new Date()
           }
         ]);
         setFalseCode(false)
       }
     },[falseCode])
+    
   return (
-    <div className='Notif'>
-        <div className="Notif-container">
-            <span className="Event">Events</span>
-            <div className="column-container">
-
+    <div className='min-h-20 border rounded shadow-sm md:col-span-3 overflow-auto'>
+        <div className='px-3 py-1 text-xl font-medium flex items-center '>
+          
+          <IoIosNotificationsOutline size={25} />
+          <span className='pl-2 '>Notifications</span>
+          </div>
+        <div className="Notif-container border-top flex flex-col">
+                <span className={`text-sm font-meduim py-2 ml-12 ${EventsList.length > 0 ? 'hidden' : 'block'}`} >Nothing for the moment...</span>
                 {EventsList.map((item, index)=>( 
-                    <div key={index} className="Notif-container-colum">
-                    <img src={item.img} alt="" />
-                    <p>{item.mssg}</p>
-                </div>
+                    <div key={index} className="flex justify-between">
+                        <div className='flex lg:px-8 px-2.5 py-1.5'>
+                          <img src={item.img} alt="" className='md:w-6 w-4 object-contain' />
+                          <p className='ml-2 text-gray-600 text-sm lg:text-base'>{item.mssg}</p>
+                        </div>
+                        <div className='flex items-center text-sm lg:mr-6 px-2'>
+                          {item.date.toISOString().slice(0, 19).replace('T', ' ')}
+                        </div>
+                    </div>
                 ))
-                
             }
             
-            </div>
+            
         </div>
     </div>
   )
