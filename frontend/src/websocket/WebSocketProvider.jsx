@@ -12,7 +12,7 @@ export const WebSocketProvider = ({ children }) => {
   const establishConnection = async () => {
      // Create a promise to represent the WebSocket connection
      const connectionPromise = new Promise((resolve, reject) => {
-      const connection = new SockJS('http://172.171.247.161:8080/ws');
+      const connection = new SockJS('http://172.210.194.63:8080/ws');
       const stompClient = Stomp.over(connection);
 
       const token = localStorage.getItem("accessToken")
