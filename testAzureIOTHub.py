@@ -9,6 +9,9 @@ mqtt_broker = "172.210.194.63"
 mqtt_port = 1883
 topic_to_publish = "sensor_data"
 message_interval_seconds = 10  # Set the interval between messages
+temp = 20
+hum = 60
+
 
 # Callbacks
 def on_connect(client, userdata, flags, rc):
@@ -33,12 +36,8 @@ client.loop_start()
 try:
     while True:
         data = {
-             "temperature": round(random.uniform(0, 35), 4),  # Random float between 20 and 30
-            "humidity": round(random.uniform(0, 70), 2),  # Random float between 40 and 60
-            "employees": random.randint(5, 15),
-            "Gas": random.randint(5, 30),
-            "Rac1": random.randint(0,2),
-            "Rac2": random.randint(0,2)
+            "temperature": round(random.uniform(temp-2,temp), 4),  # Random float between 20 and 30
+            "humidity": round(random.uniform(hum-2,hum), 2),  # Random float between 40 and 60
         }
         
         json_message = json.dumps(data)
@@ -47,6 +46,16 @@ try:
         
         # Wait for the next interval
         time.sleep(message_interval_seconds)
+
+        press = int(input("continue with temp : "))
+        if press == 0 :
+            temp = int(input("temp :"))
+        
+
+        press = int(input("continue with hum : "))
+        if press == 0 :
+            hum = int(input("hum :"))
+        
 
 except KeyboardInterrupt:
     print("User interrupted the script.")
